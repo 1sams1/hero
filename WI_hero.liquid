@@ -1,0 +1,726 @@
+{% capture aurastyle %}
+  background: {{ section.settings.auracolor }};
+  box-shadow: 0 4px 150px 300px {{ section.settings.aurashcolor }};
+  right: {{ section.settings.hori }}%;
+{% endcapture %}
+
+{% capture headingstyle %}
+  background: linear-gradient(
+    {{ section.settings.gradeg }}deg,
+    {{ section.settings.txtcolor1 }} 0%,
+    {{ section.settings.txtcolor2 }} 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.5);
+
+  font-size: {{ section.settings.headingsize }}px;
+  line-height: 1.2;
+
+  width: 100%;
+  margin: 0 0 {{ section.settings.headingbottomgap }}px;
+{% endcapture %}
+
+{% capture subheadingstyle %}
+  width: 100%;
+  margin: 0 0 {{ section.settings.parabottomgap }}px;
+
+  font-size: {{ section.settings.parasize }}px;
+  color: {{ section.settings.paracolor }};
+  line-height: 1.2;
+{% endcapture %}
+
+{% capture buttonstyle %}
+  display: flex;
+  width: fit-content;
+  padding: 12px 24px;
+
+  font-size: {{ section.settings.btnfontsize }}px;
+  color: {{ section.settings.btntxtcolor }};
+
+  background: linear-gradient(
+    {{ section.settings.gradeg }}deg,
+    {{ section.settings.btncolor1 }} 0%,
+    {{ section.settings.btncolor2 }} 100%
+  );
+
+  margin-bottom: {{ section.settings.btnbottomgap }}px;
+{% endcapture %}
+
+{% capture imageborderrad %}
+  border-radius:
+    {{ section.settings.toplrad }}px
+    {{ section.settings.toprrad }}px
+    {{ section.settings.bottomlrad }}px
+    {{ section.settings.bottomrrad }}px;
+{% endcapture %}
+
+<div class="WI_hero_main">
+    <div class="WI_hero_in" style="padding: {{ section.settings.ptop }}px {{ section.settings.pleft }}px {{ section.settings.pbottom }}px {{ section.settings.pright }}px;">
+        {% comment %} Background image {% endcomment %}
+        {% assign bgwidths = '240, 352, 832, 1200, 1600, 1920, 2560, 3840' %}
+        <div class="WI_hero_bgimage" style="opacity: {{ section.settings.op }};">
+            {{ section.settings.bgimg | image_url: width: 3840 | image_tag: widths: bgwidths, loading: "eager", fetchpriority: 'high' }}
+        </div>
+        {% comment %} Background aura {% endcomment %}
+        <div class="WI_hero_aura" style="{{ aurastyle }}">
+
+        </div>
+        {% comment %} Image and text {% endcomment %}
+         <div class="WI_hero_imgandtext" style="gap:{{ section.settings.gap }}px;">
+            <div class="WI_hero_imgandtext_text">
+                <div class="WI_hero_imgandtext_textin">
+                    <h5 style="{{ headingstyle }}">
+    {{ section.settings.heading }}
+</h5>
+<p style="{{ subheadingstyle }}">
+{{ section.settings.para }}
+</p>
+<a href="{{ section.settings.btnurl }}" style="{{ buttonstyle }}">
+    {{ section.settings.btntxt }}
+</a>
+<a href="{{ section.settings.linkurl }}" style="width: 100%; text-decoration: underline;font-size: {{ section.settings.linkfontsize }}px;color:{{ section.settings.linkcolor }};">
+    {{ section.settings.linktxt }}
+</a>
+                </div>
+
+            </div>
+            <div class="WI_hero_imgandtext_img">
+                {% assign widths = '240, 352, 832, 120, 1600, 1920' %}
+                <div class="WI_hero_imgandtext_imgHolder" style="{{ imageborderrad }}">
+                    {{ section.settings.img | image_url: width: 1920 | image_tag: widths: widths, loading: "eager", fetchpriority: 'high' }}
+                </div>
+            </div>
+         </div>
+        <div class="WI_hero_review">
+            <section class="splide" aria-label="Splide Basic HTML Example" id="splide">
+                <div class="splide__track">
+                        <ul class="splide__list">
+                            {% for block in section.blocks %}
+                                <li class="splide__slide" style="margin-top: 48px;padding-bottom: 24px;">
+                                    <div class="WI_hero_review_slide">
+                                        <p>
+                                            {{ block.settings.text }}
+                                        </p>
+                                        <div class="WI_hero_review_slide_name">
+                                            <svg width="74" height="14" viewBox="0 0 74 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_81_26)">
+                                            <path d="M7 0L8.5716 4.83688H13.6574L9.5429 7.82624L11.1145 12.6631L7 9.67376L2.8855 12.6631L4.4571 7.82624L0.342604 4.83688H5.4284L7 0Z" fill="black" fill-opacity="0.8"/>
+                                            <path d="M22 0L23.5716 4.83688H28.6574L24.5429 7.82624L26.1145 12.6631L22 9.67376L17.8855 12.6631L19.4571 7.82624L15.3426 4.83688H20.4284L22 0Z" fill="black" fill-opacity="0.8"/>
+                                            <path d="M37 0L38.5716 4.83688H43.6574L39.5429 7.82624L41.1145 12.6631L37 9.67376L32.8855 12.6631L34.4571 7.82624L30.3426 4.83688H35.4284L37 0Z" fill="black" fill-opacity="0.8"/>
+                                            <path d="M52 0L53.5716 4.83688H58.6574L54.5429 7.82624L56.1145 12.6631L52 9.67376L47.8855 12.6631L49.4571 7.82624L45.3426 4.83688H50.4284L52 0Z" fill="black" fill-opacity="0.8"/>
+                                            <path d="M67 0L68.5716 4.83688H73.6574L69.5429 7.82624L71.1145 12.6631L67 9.67376L62.8855 12.6631L64.4571 7.82624L60.3426 4.83688H65.4284L67 0Z" fill="black" fill-opacity="0.8"/>
+                                            </g>
+                                            <defs>
+                                            <clipPath id="clip0_81_26">
+                                            <rect width="74" height="14" fill="white"/>
+                                            </clipPath>
+                                            </defs>
+                                            </svg>
+                                            <svg width="8" height="7" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 5.255V1.77641C7.04201 2.35992 5.93132 2.72257 4.7707 2.8308C4.9023 1.81111 5.32695 0.837217 6.00501 0H2.02991C2.6967 0.838344 3.11111 1.81032 3.23478 2.82599C2.06957 2.71081 0.956695 2.3392 0 1.74582V5.22447C0.95799 4.64096 2.06868 4.27832 3.2293 4.17009C3.09754 5.18947 2.6729 6.16304 1.99499 7H5.97009C5.30344 6.16189 4.88905 5.19022 4.76522 4.17483C5.93043 4.29001 7.04331 4.66162 8 5.255Z" fill="#9333EA"/>
+</svg>
+                                            <span>{{ block.settings.name }}</span>
+                                            <svg width="8" height="7" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 5.255V1.77641C7.04201 2.35992 5.93132 2.72257 4.7707 2.8308C4.9023 1.81111 5.32695 0.837217 6.00501 0H2.02991C2.6967 0.838344 3.11111 1.81032 3.23478 2.82599C2.06957 2.71081 0.956695 2.3392 0 1.74582V5.22447C0.95799 4.64096 2.06868 4.27832 3.2293 4.17009C3.09754 5.18947 2.6729 6.16304 1.99499 7H5.97009C5.30344 6.16189 4.88905 5.19022 4.76522 4.17483C5.93043 4.29001 7.04331 4.66162 8 5.255Z" fill="#9333EA"/>
+                                            </svg>
+                                            <span>{{ block.settings.date }}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<style>
+    /* ==============================
+   Hero Base
+============================== */
+
+.WI_hero_main {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.WI_hero_in {
+  width: 100%;
+  height: auto;
+}
+
+
+/* ==============================
+   Background
+============================== */
+
+.WI_hero_bgimage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.WI_hero_bgimage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ==============================
+   Aura
+============================== */
+
+.WI_hero_aura {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  bottom: 0;
+  border-radius: 999px;
+}
+
+
+/* ==============================
+   Layout
+============================== */
+
+.WI_hero_imgandtext {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: flex;
+  margin-bottom: 48px;
+}
+
+.WI_hero_imgandtext_text,
+.WI_hero_imgandtext_img {
+  width: 50%;
+  height: auto;
+}
+
+.WI_hero_imgandtext_text {
+  display: flex;
+  align-items: center;
+}
+
+
+/* ==============================
+   Image
+============================== */
+
+.WI_hero_imgandtext_imgHolder {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background-color: #f2f2f2;
+  position: relative;
+  overflow: hidden;
+}
+
+.WI_hero_imgandtext_imgHolder img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+}
+
+
+/* ==============================
+   Divider
+============================== */
+
+.WI_hero_imgandtext_divider {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* ==============================
+   Reviews
+============================== */
+
+.WI_hero_review {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.splide {
+  width: 850px;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.WI_hero_review_slide {
+  width: 100%;
+  padding: 0 32px;
+}
+
+.WI_hero_review_slide p {
+  width: 100%;
+  margin: 0 0 16px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  color: #000;
+}
+
+.WI_hero_review_slide_name {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 11px;
+}
+
+
+/* ==============================
+   Splide Controls
+============================== */
+
+.splide .splide__arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 0;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.splide .splide__arrow--next {
+  right: 0;
+}
+
+.splide .splide__arrow--prev {
+  left: 0;
+}
+
+.splide .splide__arrow:disabled {
+  opacity: 0 !important;
+}
+.splide .splide__arrow svg{
+    display: none;
+}
+.splide .splide__pagination__page {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.splide .splide__pagination__page.is-active {
+  width: 8px;
+  height: 8px;
+  background-color: #000 !important;
+  transform: scale(1) !important;
+}
+
+  .splide__arrow--prev {
+  background: url('{{ "prev.svg" | asset_url }}') center no-repeat !important;
+  background-size: 14px;
+}
+
+.splide .splide__arrow--next {
+  background: url('{{ "next.svg" | asset_url }}') center no-repeat !important;
+  background-size: 14px;
+}
+
+
+/* ==============================
+   Responsive
+============================== */
+
+@media (max-width: 1024px) {
+
+  .WI_hero_in {
+    padding: 48px 20px !important;
+  }
+
+  .WI_hero_imgandtext {
+    flex-wrap: wrap;
+    gap: 24px !important;
+  }
+
+  .WI_hero_imgandtext_text,
+  .WI_hero_imgandtext_img {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .WI_hero_imgandtext_textin {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .WI_hero_imgandtext_textin h5,
+  .WI_hero_imgandtext_textin p,
+  .WI_hero_imgandtext_textin a {
+    text-align: center;
+  }
+
+  .splide {
+    width: 100%;
+  }
+
+  .splide .splide__arrow {
+    display: none;
+  }
+
+  .WI_hero_review_slide {
+    padding: 0;
+  }
+
+}
+
+
+</style>
+{% schema %}
+{
+    "name": "WI hero",
+    "blocks": [
+        {
+            "type": "text",
+            "name": "Review",
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "text",
+                    "label": "Review text",
+                    "default": "“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor”"
+                },
+                {
+                    "type": "text",
+                    "id": "name",
+                    "label": "Name",
+                    "default": "Lorem ipsum"
+                },
+                {
+                    "type": "text",
+                    "id": "date",
+                    "label": "Date",
+                    "default": "22/09/1996"
+                }
+            ]
+        }
+    ],
+    "settings": [
+            {
+                "type": "image_picker",
+                "id": "bgimg",
+                "label": "Background image"
+            },
+            {
+                "type": "range",
+                "id": "op",
+                "label": "Background opacity",
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.1,
+                "unit": "o",
+                "default": 0.5
+            },
+            {
+                "type": "header",
+                "content": "Aura settings"
+            },
+            {
+                "type": "color",
+                "id": "auracolor",
+                "label": "Aura color",
+                "default": "#9333EA"
+            },
+            {
+                "type": "color_background",
+                "id": "aurashcolor",
+                "label": "Aura shadow color",
+                "default": "#9333EA"
+            },
+            {
+                "type": "range",
+                "id": "hori",
+                "label": "Horizontal move",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "%",
+                "default": 100
+            },
+            {
+                "type": "header",
+                "content": "Image and text settings"
+            },
+            {
+                "type": "image_picker",
+                "id": "img",
+                "label": "Main image"
+            },
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Heading"
+            },
+            {
+                "type": "range",
+                "id": "headingsize",
+                "label": "Heading font size",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 56
+            },
+            {
+                "type": "color_background",
+                "id": "txtcolor1",
+                "label": "Text color 1",
+                "default": "#9333EA "
+            },
+            {
+                "type": "color_background",
+                "id": "txtcolor2",
+                "label": "Text color 2",
+                "default": "#2563EB "
+            },
+            {
+                "type": "text",
+                "id": "gradeg",
+                "label": "Grad deg",
+                "default": "90"
+            },
+            {
+                "type": "range",
+                "id": "headingbottomgap",
+                "label": "Headign bottom gap",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 24
+            },
+            {
+                "type": "text",
+                "id": "para",
+                "label": "Sub heading"
+            },
+            {
+                "type": "range",
+                "id": "parasize",
+                "label": "Sub heading font size",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 16
+            },
+            {
+                "type": "color",
+                "id": "paracolor",
+                "label": "Sub heading color",
+                "default": "#000"
+            },
+            {
+                "type": "range",
+                "id": "parabottomgap",
+                "label": "Sub heading bottom gap",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 80
+            },
+            {
+                "type": "range",
+                "id": "gap",
+                "label": "Text and image gap",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 80
+            },
+            {
+                "type": "range",
+                "id": "toprrad",
+                "label": "Top right radius",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 0
+            },
+            {
+                "type": "range",
+                "id": "toplrad",
+                "label": "Top left radius",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 0
+            },
+            {
+                "type": "range",
+                "id": "bottomrrad",
+                "label": "Bottom right radius",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 0
+            },
+            {
+                "type": "text",
+                "id": "btntxt",
+                "label": "Button text",
+                "default": "Shop now"
+            },
+            {
+                "type": "url",
+                "id": "btnurl",
+                "label": "Button url"
+            },
+            {
+                "type": "range",
+                "id": "btnfontsize",
+                "label": "Button font size",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 14
+            },
+            {
+                "type": "color_background",
+                "id": "btncolor1",
+                "label": "Button color 1",
+                "default": "#9333EA "
+            },
+            {
+                "type": "color_background",
+                "id": "btncolor2",
+                "label": "Button color 2",
+                "default": "#2563EB "
+            },
+            {
+                "type": "text",
+                "id": "btngradeg",
+                "label": "Button Grad deg",
+                "default": "90"
+            },
+            {
+                "type": "color",
+                "id": "btntxtcolor",
+                "label": "Button text color",
+                "default": "#fff"
+            },
+            {
+                "type": "range",
+                "id": "btnbottomgap",
+                "label": "Button bottom gap",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 16
+            },
+            {
+                "type": "text",
+                "id": "linktxt",
+                "label": "Link text",
+                "default": "Over 100,000+ Happy customers"
+            },
+             {
+                "type": "url",
+                "id": "linkurl",
+                "label": "Link url"
+            },
+            {
+                "type": "color",
+                "id": "linkcolor",
+                "label": "Link font color",
+                "default": "#000"
+            },
+            {
+                "type": "range",
+                "id": "linkfontsize",
+                "label": "Link font size",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 14
+            },
+            {
+                "type": "range",
+                "id": "bottomlrad",
+                "label": "Bottom left radius",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 0
+            },
+            {
+                "type": "header",
+                "content": "Padding"
+            },
+            {
+                "type": "range",
+                "id": "ptop",
+                "label": "Top padding",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 0
+            },
+            {
+                "type": "range",
+                "id": "pbottom",
+                "label": "Bottom padding",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 0
+            },
+            {
+                "type": "range",
+                "id": "pleft",
+                "label": "Left padding",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 0
+            },
+            {
+                "type": "range",
+                "id": "pright",
+                "label": "Right padding",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 0
+            }
+        ],
+        "presets": [
+            {
+                "name": "WI hero"
+            }
+        ]
+}
+{% endschema %}
