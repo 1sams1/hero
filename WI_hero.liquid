@@ -99,7 +99,7 @@
                 <div class="splide__track">
                         <ul class="splide__list">
                             {% for block in section.blocks %}
-                                <li class="splide__slide" style="margin-top: 48px;padding-bottom: 24px;">
+                                <li class="splide__slide" style="margin-top: 48px;padding-bottom:25px;">
                                     <div class="WI_hero_review_slide">
                                         <p>
                                             {{ block.settings.text }}
@@ -332,6 +332,10 @@
 .splide .splide__arrow--next {
   background: url('{{ "next.svg" | asset_url }}') center no-repeat !important;
   background-size: 14px;
+}
+
+.splide .splide__pagination{
+    bottom: 0px;
 }
 
 
